@@ -4,11 +4,11 @@ import { startTest } from "../test-utils.ts";
 const fetch = await startTest(import.meta.url);
 
 Deno.test({
-  name: "GET /hello",
+  name: "GET /world",
   async fn() {
     const res = await fetch("/");
     const body = await res.text();
-    assertEquals(body, "World!");
+    assertEquals(body, "Hello!");
   },
   sanitizeResources: false,
   sanitizeOps: false,
