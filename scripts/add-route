@@ -1,0 +1,47 @@
+#!/usr/bin/env -S deno run --allow-read --allow-write
+import { generateRouteIndex } from "./lib/utils.ts";
+
+const routeName = Deno.args[0];
+
+if (!routeName) {
+  console.error("Please provide a route name");
+  Deno.exit(1);
+}
+
+// generate route file
+const routeFileContent = `import { Router } from "https://deno.land/x/oak/mod.ts";
+import { addRoutes } from "../router.ts";
+const router = new Router();
+
+router.get("/", (ctx) => {
+  ctx.response.body = "${routeName}!";
+});
+
+addRoutes(import.meta.url, router)
+`;
+const routeFilePath = `./routes/${routeName}.ts`;
+await Deno.writeTextFile(routeFilePath, routeFileContent);
+
+// generate route test file
+const routeTestFileContent = `import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { loadSuperDeno } from "../test-utils.ts";
+const superdeno = loadSuperDeno(import.meta.url);
+
+Deno.test({
+  name: "GET /${routeName}",
+  async fn() {
+    await superdeno
+      .get("/")
+      .expect(200)
+      .expect((response) => {
+        assertEquals(response.text, "${routeName}!");
+      });
+  },
+  sanitizeResources: false,
+  sanitizeOps: false,
+});
+`;
+const routeTestFilePath = `./tests/${routeName}.test.ts`;
+await Deno.writeTextFile(routeTestFilePath, routeTestFileContent);
+
+generateRouteIndex();

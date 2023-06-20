@@ -1,10 +1,4 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write
-const routesDir = "./routes";
-const files = [];
-for await (const file of Deno.readDir(routesDir)) {
-  if (file.isFile) {
-    files.push(file.name);
-  }
-}
-const indexFileContent = files.map((file) => `import "${routesDir}/${file}";`).join("\n");
-await Deno.writeTextFile(`${routesDir}-index.ts`, indexFileContent);
+import { generateRouteIndex } from "./lib/utils.ts";
+
+generateRouteIndex();

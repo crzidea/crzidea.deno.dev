@@ -16,7 +16,17 @@
     },
     {
       "request": "launch",
-      "name": "Test Current File",
+      "name": "Test Current Route File",
+      "type": "node",
+      "program": "${workspaceFolder}/tests/${fileBasenameNoExtension}.test.ts",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "/Users/crzidea/.deno/bin/deno",
+      "runtimeArgs": ["test", "--inspect-wait", "--allow-all"],
+      "attachSimplePort": 9229
+    },
+    {
+      "request": "launch",
+      "name": "Run Current Test File",
       "type": "node",
       "program": "${workspaceFolder}/tests/${fileBasename}",
       "cwd": "${workspaceFolder}",
