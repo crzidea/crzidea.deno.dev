@@ -1,6 +1,5 @@
-import { dirname } from "https://deno.land/std@0.152.0/path/mod.ts";
-import { superoak } from "https://deno.land/x/superoak@4.7.0/mod.ts";
 import application from "./main.ts";
+import { dirname, superoak } from "./deps.ts";
 
 const __dirname = dirname(import.meta.url);
 const testsDir = `${__dirname}/tests`;

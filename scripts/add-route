@@ -9,7 +9,7 @@ if (!routeName) {
 }
 
 // generate route file
-const routeFileContent = `import { Router } from "https://deno.land/x/oak/mod.ts";
+const routeFileContent = `import { Router } from "../deps.ts";
 import { addRoutes } from "../router.ts";
 const router = new Router();
 
@@ -23,7 +23,7 @@ const routeFilePath = `./routes/${routeName}.ts`;
 await Deno.writeTextFile(routeFilePath, routeFileContent);
 
 // generate route test file
-const routeTestFileContent = `import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+const routeTestFileContent = `import { assertEquals } from "../deps.ts";
 import { loadSuperDeno } from "../test-utils.ts";
 const superdeno = loadSuperDeno(import.meta.url);
 
