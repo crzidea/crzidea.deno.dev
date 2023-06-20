@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.152.0/testing/asserts.ts";
+import { assertEquals } from "../deps.ts";
 import { loadSuperDeno } from "../test-utils.ts";
 const superdeno = loadSuperDeno(import.meta.url);
 
