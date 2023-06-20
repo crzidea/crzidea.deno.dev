@@ -22,6 +22,7 @@
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "/Users/crzidea/.deno/bin/deno",
       "runtimeArgs": ["test", "--inspect-wait", "--allow-all"],
+      "envFile": "${workspaceFolder}/.env.local",
       "attachSimplePort": 9229
     },
     {
@@ -32,6 +33,7 @@
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "/Users/crzidea/.deno/bin/deno",
       "runtimeArgs": ["test", "--inspect-wait", "--allow-all"],
+      "envFile": "${workspaceFolder}/.env.local",
       "attachSimplePort": 9229
     },
     {
