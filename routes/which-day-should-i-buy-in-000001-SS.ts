@@ -3,8 +3,9 @@ import { addRoutes } from "../router.ts";
 const router = new Router();
 
 router.get("/", async (ctx) => {
+  const range = "1y";
   const response = await fetch(
-    "https://query1.finance.yahoo.com/v8/finance/chart/000001.SS?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=1y&corsDomain=finance.yahoo.com&.tsrc=finance"
+    `https://query1.finance.yahoo.com/v8/finance/chart/000001.SS?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=${range}&corsDomain=finance.yahoo.com&.tsrc=finance`
   );
   const json = await response.json();
   const result = json.chart.result[0];
@@ -53,6 +54,7 @@ router.get("/", async (ctx) => {
   )[0][0];
 
   ctx.response.body = {
+    latestDate: new Date(result.timestamp.pop() * 1000),
     whichDayShouldIBuyIn,
     summaryOfDays
   };
