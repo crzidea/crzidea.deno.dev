@@ -59,7 +59,7 @@ router.get("/", async (ctx) => {
   }
 
   const whichDayShouldIBuyIn = Object.entries(summaryOfDays).sort(
-    (a, b) => a[1].tp90ClosePrice - b[1].tp90ClosePrice
+    (a, b) => a[1].averageClosePrice - b[1].averageClosePrice
   )[0][0];
 
   ctx.response.body = {
