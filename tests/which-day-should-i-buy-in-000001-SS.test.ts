@@ -10,7 +10,7 @@ Deno.test({
       .expect(200)
       .expect((response) => {
         const json = JSON.parse(response.text);
-        assertExists(json.whichDayShouldIBuyIn);
+        assertExists(json.latestDate);
         assertExists(json.summaryOfDays);
       });
   },
